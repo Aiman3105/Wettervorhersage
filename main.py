@@ -17,18 +17,24 @@ if place !="" and option!="":
 
 
 if option=="Temperature" and place!="":
-    dates, temp, sky = get_data(place, days)
-    figure=px.line(x=dates, y=temp, labels={"x": "Dates", "y": "Temperature"})
-    st.plotly_chart(figure)
+    try:
+        dates, temp, sky = get_data(place, days)
+        figure=px.line(x=dates, y=temp, labels={"x": "Dates", "y": "Temperature"})
+        st.plotly_chart(figure)
+    except KeyError:
+        st.write("There is no data for the entered location)
 
 if option=="Sky":
-    dates, temp, sky = get_data(place, days)
-    cols = st.columns(6)
-    image_map = {
-        "Clear": "images/clear.png",
-        "Rain": "images/rain.png",
-        "Clouds": "images/cloud.png",
-        "Snow": "images/snow.png"
+    try:
+        dates, temp, sky = get_data(place, days)
+        cols = st.columns(6)
+        image_map = {
+            "Clear": "images/clear.png",
+            "Rain": "images/rain.png",
+            "Clouds": "images/cloud.png",
+            "Snow": "images/snow.png"
+    except KeyError:
+        st.write("There is no data for the entered location)
     }
 
     for index, item in enumerate(sky):
