@@ -32,16 +32,16 @@ if option=="Sky":
             "Clear": "images/clear.png",
             "Rain": "images/rain.png",
             "Clouds": "images/cloud.png",
-            "Snow": "images/snow.png"
-    except KeyError:
-        st.write("There is no data for the entered location")
-    }
+            "Snow": "images/snow.png"}
+
+
 
     for index, item in enumerate(sky):
         col = cols[index % 6]
         with col:
             if item in image_map:
                 st.image(image_map[item], caption=dates[index])
-
+    except KeyError:
+        st.write("There is no data for the entered location")
 
 
