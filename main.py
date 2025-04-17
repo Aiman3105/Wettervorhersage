@@ -26,12 +26,13 @@ if option=="Temperature" and place!="":
 
 if option=="Sky":
     try:
+        dates, temp, sky = get_data(place, days)
         if place != "" and option != "":
             if days == 1:
                 st.subheader(f"{option} for the next day in {place}")
             else:
                 st.subheader(f"{option} for the next {days} days in {place}")
-        dates, temp, sky = get_data(place, days)
+
         cols = st.columns(6)
         image_map = {
             "Clear": "images/clear.png",
