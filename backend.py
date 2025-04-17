@@ -8,14 +8,15 @@ def get_data(place, forecast_days):
 
     times = []
     temp = []
+    sky=[]
 
     for i in range(forecast_days*8):
         times.append(content["list"][i]["dt_txt"])
         temp_cel=content["list"][i]["main"]["temp"]-273.15
         temp.append(temp_cel)
+        sky.append(content["list"][i]["weather"][0]["main"])
 
-    return times, temp
+    return times, temp, sky
 
-print(get_data("Tokyo", 1))
 
 

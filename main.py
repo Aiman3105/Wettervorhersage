@@ -14,9 +14,27 @@ if place !="" and option!="":
     else:
         st.subheader(f"{option} for the next {days} days in {place}")
 
+dates, temp, sky= get_data(place, days)
 
 if option=="Temperature":
-    dates, temp= get_data(place, days)
 
     figure=px.line(x=dates, y=temp, labels={"x": "Dates", "y": "Temperature"})
     st.plotly_chart(figure)
+
+if option=="Sky":
+    cols = st.columns(6)
+    image_map = {
+        "Clear": "images/clear.png",
+        "Rain": "images/rain.png",
+        "Clouds": "images/cloud.png",
+        "Snow": "images/snow.png"
+    }
+
+    for index, item in enumerate(sky):
+        col = cols[index % 6]
+        with col:
+            if item in image_map:
+                st.image(image_map[item], caption=dates[index])
+
+
+
