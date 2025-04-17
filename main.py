@@ -11,13 +11,15 @@ option=st.selectbox("Select data to view:", ("Temperature", "Sky"))
 
 if option=="Temperature" and place!="":
     try:
+        dates, temp, sky = get_data(place, days)
+        figure = px.line(x=dates, y=temp,
+                         labels={"x": "Dates", "y": "Temperature"})
         if place != "" and option != "":
             if days == 1:
                 st.subheader(f"{option} for the next day in {place}")
             else:
                 st.subheader(f"{option} for the next {days} days in {place}")
-        dates, temp, sky = get_data(place, days)
-        figure=px.line(x=dates, y=temp, labels={"x": "Dates", "y": "Temperature"})
+
         st.plotly_chart(figure)
     except KeyError:
         st.write("There is no data for the entered location")
