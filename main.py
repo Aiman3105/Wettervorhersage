@@ -22,7 +22,7 @@ if option=="Temperature" and place!="":
         figure=px.line(x=dates, y=temp, labels={"x": "Dates", "y": "Temperature"})
         st.plotly_chart(figure)
     except KeyError:
-        st.write("There is no data for the entered location)
+        st.write("There is no data for the entered location")
 
 if option=="Sky":
     try:
@@ -34,7 +34,7 @@ if option=="Sky":
             "Clouds": "images/cloud.png",
             "Snow": "images/snow.png"
     except KeyError:
-        st.write("There is no data for the entered location)
+        st.write("There is no data for the entered location")
     }
 
     for index, item in enumerate(sky):
